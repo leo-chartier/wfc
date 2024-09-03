@@ -43,12 +43,13 @@ Tile = str
 Rules = dict[Tile, dict[Direction, list[Tile]]]
 
 class WFC:
-    def __init__(self, width: int, height: int, tiles: list[Tile], rules: Rules, meta: dict[str, dict[Tile, str]] | None = None) -> None:
+    def __init__(self, width: int, height: int, tiles: list[Tile], rules: Rules, meta: dict[str, dict[Tile, str]] | None = None, use_minimal_entropy: bool = True) -> None:
         self.width = width
         self.height = height
         self.tiles = sorted(tiles)
         self.rules = rules
         self.meta = meta or {}
+        self.use_minimal_entropy = use_minimal_entropy
         self.reset()
     
     def reset(self) -> None:
@@ -61,7 +62,7 @@ class WFC:
         ]
     
     @staticmethod
-    def from_json(f: TextIO, width: int, height: int) -> "WFC":
+    def from_json(f: TextIO, width: int, height: int, use_minimal_entropy: bool = True) -> "WFC":
         j = json.load(f)
 
         with open("schema.json", "r") as sf:
@@ -95,7 +96,7 @@ class WFC:
         if sprites:
             meta["sprites"] = sprites
 
-        return WFC(width, height, tiles, rules, meta)
+        return WFC(width, height, tiles, rules, meta, use_minimal_entropy)
 
     def verify_rules(self, early_stop: bool = False) -> bool:
         error = False
@@ -138,11 +139,16 @@ class WFC:
         ]
     
     def collapse(self) -> tuple[int, int] | None:
-        remaining = self.get_not_collapsed()
-        if not remaining:
+        possibilities = self.get_not_collapsed()
+
+        if self.use_minimal_entropy and possibilities:
+            min_entropy = min(len(states) for row in self.grid for states in row if len(states) > 1)
+            possibilities = [(i, j) for i, j in possibilities if len(self.grid[i][j]) == min_entropy]
+        
+        if not possibilities:
             return None
 
-        i, j = random.choice(remaining)
+        i, j = random.choice(possibilities)
         selected = random.choice(sorted(self.grid[i][j])) # Sorting ensures reproducibility
         self.grid[i][j] = {selected}
 
@@ -307,14 +313,29 @@ def main() -> None:
         help="height of the output image in tiles",
         type=strictly_positive,
     )
+    parser.add_argument(
+        "--seed",
+        help="seed for the randomizer",
+        type=int,
+        default=None,
+    )
+    parser.add_argument(
+        "--no-min-entropy",
+        help="disables the selection by minimal entropy",
+        action="store_false",
+    )
 
     if len(sys.argv) == 1:
         parser.print_help(sys.stderr)
         sys.exit(1)
     args = parser.parse_args()
 
+    if args.seed is not None:
+        random.seed(args.seed)
+
+    sys.stdout.reconfigure(encoding='utf-8') # type: ignore
     with open(args.fp, "r", encoding="utf-8") as f:
-        wfc = WFC.from_json(f, args.width, args.height)
+        wfc = WFC.from_json(f, args.width, args.height, args.no_min_entropy)
     
     if not wfc.verify_rules():
         return
