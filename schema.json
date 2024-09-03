@@ -1,0 +1,66 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/leo-chartier/wfc/blob/main/schema.json",
+    "title": "WFC rules",
+    "description": "Rule for a Wave Function Collapse algorithm",
+    "type": "object",
+    "additionalProperties": {
+        "description": "The rules for a tile",
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "description": "The character that represents this tile",
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1
+            },
+            "sprite": {
+                "description": "The path to the image that represents this tile",
+                "type": "string",
+                "pattern": "^([A-Z]:[/\\\\]|/)?(\\w+[/\\\\])*\\w+\\.[a-z]+$"
+            },
+            "up": {
+                "description": "The tiles that can be above this one",
+                "type": "array",
+                "items": {
+                    "data": {
+                        "enum": "0#/properties"
+                    }
+                }
+            },
+            "down": {
+                "description": "The tiles that can be below this one",
+                "type": "array",
+                "items": {
+                    "data": {
+                        "enum": "0#/properties"
+                    }
+                }
+            },
+            "left": {
+                "description": "The tiles that can be to the left this one",
+                "type": "array",
+                "items": {
+                    "data": {
+                        "enum": "0#/properties"
+                    }
+                }
+            },
+            "right": {
+                "description": "The tiles that can be to the right this one",
+                "type": "array",
+                "items": {
+                    "data": {
+                        "enum": "0#/properties"
+                    }
+                }
+            }
+        },
+        "required": [
+            "up",
+            "down",
+            "left",
+            "right"
+        ]
+    }
+}

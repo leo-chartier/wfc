@@ -1,5 +1,8 @@
+import argparse
 from enum import Enum
 import json
+import sys
+from jsonschema import validate
 import os
 from PIL import Image
 import random
@@ -61,7 +64,9 @@ class WFC:
     def from_json(f: TextIO, width: int, height: int) -> "WFC":
         j = json.load(f)
 
-        # TODO: Validation
+        with open("schema.json", "r") as sf:
+            schema = json.load(sf)
+            validate(j, schema)
 
         rules: Rules = {}
         symbols: dict[Tile, str] = {}
@@ -275,13 +280,41 @@ def generate_rule_symetry(rules: Rules) -> Rules:
 
 
 def main() -> None:
-    random.seed(0) # TEMP
+    def strictly_positive(arg: str) -> int:
+        try:
+            v = int(arg)
+        except ValueError:
+            raise argparse.ArgumentTypeError("Size must be an integer")
+        
+        if v <= 0:
+            raise argparse.ArgumentTypeError("Size must be strictly positive")
+        
+        return v
 
-    fp = "landscape.json"
-    WIDTH, HEIGHT = 10, 10
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "fp",
+        metavar="filename",
+        help="name of the file containing the rules",
+    )
+    parser.add_argument(
+        "width",
+        help="width of the output image in tiles",
+        type=strictly_positive,
+    )
+    parser.add_argument(
+        "height",
+        help="height of the output image in tiles",
+        type=strictly_positive,
+    )
 
-    with open(fp, "r", encoding="utf-8") as f:
-        wfc = WFC.from_json(f, WIDTH, HEIGHT)
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+    args = parser.parse_args()
+
+    with open(args.fp, "r", encoding="utf-8") as f:
+        wfc = WFC.from_json(f, args.width, args.height)
     
     if not wfc.verify_rules():
         return
