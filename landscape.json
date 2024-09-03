@@ -1,0 +1,58 @@
+{
+    "Sky": {
+        "symbol": ".",
+        "sprite": "landscape/Sky.png",
+        "up": ["Sky"],
+        "down": ["Sky", "Grass", "TLC", "TRC"],
+        "left": ["Sky", "RightWall", "TRC"],
+        "right": ["Sky", "LeftWall", "TLC"]
+    },
+    "Dirt": {
+        "symbol": "#",
+        "sprite": "landscape/Dirt.png",
+        "up": ["Dirt", "Grass"],
+        "down": ["Dirt", "Grass", "TLC", "TRC"],
+        "left": ["Dirt", "LeftWall", "RightWall", "TRC"],
+        "right": ["Dirt", "LeftWall", "RightWall", "TLC"]
+    },
+    "Grass": {
+        "symbol": "-",
+        "sprite": "landscape/Grass.png",
+        "up": ["Sky", "Dirt", "Grass", "LeftWall", "RightWall", "TLC", "TRC"],
+        "down": ["Dirt", "Grass", "TLC", "TRC"],
+        "left": ["Grass", "RightWall", "TLC"],
+        "right": ["Grass", "LeftWall", "TRC"]
+    },
+    "LeftWall": {
+        "symbol": "{",
+        "sprite": "landscape/LeftWall.png",
+        "up": ["LeftWall", "TLC"],
+        "down": ["Grass", "LeftWall", "TRC"],
+        "left": ["Sky", "Dirt", "Grass", "TLC"],
+        "right": ["Dirt", "RightWall"]
+    },
+    "RightWall": {
+        "symbol": "}",
+        "sprite": "landscape/RightWall.png",
+        "up": ["RightWall", "TRC"],
+        "down": ["Grass", "RightWall", "TLC"],
+        "left": ["Dirt", "LeftWall"],
+        "right": ["Sky", "Dirt", "Grass", "TRC"]
+    },
+    "TLC": {
+        "symbol": "/",
+        "sprite": "landscape/TLC.png",
+        "up": ["Sky", "Dirt", "Grass", "RightWall", "TRC"],
+        "down": ["Grass", "LeftWall", "TRC"],
+        "left": ["Sky", "Dirt"],
+        "right": ["Grass", "LeftWall", "TRC"]
+    },
+    "TRC": {
+        "symbol": "\\",
+        "sprite": "landscape/TRC.png",
+        "up": ["Sky", "Dirt", "Grass", "LeftWall", "TLC"],
+        "down": ["Grass", "RightWall", "TLC"],
+        "left": ["Grass", "RightWall", "TLC"],
+        "right": ["Sky", "Dirt"]
+    }
+}

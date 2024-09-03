@@ -1,0 +1,218 @@
+{
+    "Board": {
+        "symbol": " ",
+        "sprite": "pcb/Board.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL", "PinR"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL", "PinR"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU", "PinD"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU", "PinD"]
+    },
+    "WireUD": {
+        "symbol": "│",
+        "sprite": "pcb/WireUD.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU", "PinD"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU", "PinD"]
+    },
+    "WireUL": {
+        "symbol": "┘",
+        "sprite": "pcb/WireUL.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL", "PinR"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU", "PinD"]
+    },
+    "WireUR": {
+        "symbol": "└",
+        "sprite": "pcb/WireUR.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL", "PinR"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU", "PinD"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireDL": {
+        "symbol": "┐",
+        "sprite": "pcb/WireDL.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL", "PinR"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU", "PinD"]
+    },
+    "WireDR": {
+        "symbol": "┌",
+        "sprite": "pcb/WireDR.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL", "PinR"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU", "PinD"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireLR": {
+        "symbol": "─",
+        "sprite": "pcb/WireLR.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL", "PinR"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL", "PinR"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireUDL": {
+        "symbol": "┤",
+        "sprite": "pcb/WireUDL.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU", "PinD"]
+    },
+    "WireUDR": {
+        "symbol": "├",
+        "sprite": "pcb/WireUDR.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU", "PinD"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireULR": {
+        "symbol": "┴",
+        "sprite": "pcb/WireULR.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL", "PinR"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireDLR": {
+        "symbol": "┬",
+        "sprite": "pcb/WireDLR.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL", "PinR"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireUDLR": {
+        "symbol": "┼",
+        "sprite": "pcb/WireUDLR.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireDiag": {
+        "symbol": "╱",
+        "sprite": "pcb/WireDiag.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "WireAntidiag": {
+        "symbol": "╲",
+        "sprite": "pcb/WireAntidiag.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    },
+    "Chip": {
+        "symbol": "█",
+        "sprite": "pcb/Chip.png",
+        "up": ["Chip", "ChipU"],
+        "down": ["Chip", "ChipD"],
+        "left": ["Chip", "ChipL"],
+        "right": ["Chip", "ChipR"]
+    },
+    "ChipU": {
+        "symbol": "┻",
+        "sprite": "pcb/ChipU.png",
+        "up": ["PinU"],
+        "down": ["Chip"],
+        "left": ["ChipU", "ChipUL"],
+        "right": ["ChipU", "ChipUR"]
+    },
+    "ChipD": {
+        "symbol": "┳",
+        "sprite": "pcb/ChipD.png",
+        "up": ["Chip"],
+        "down": ["PinD"],
+        "left": ["ChipD", "ChipDL"],
+        "right": ["ChipD", "ChipDR"]
+    },
+    "ChipL": {
+        "symbol": "┫",
+        "sprite": "pcb/ChipL.png",
+        "up": ["ChipL", "ChipUL"],
+        "down": ["ChipL", "ChipDL"],
+        "left": ["PinL"],
+        "right": ["Chip"]
+    },
+    "ChipR": {
+        "symbol": "┣",
+        "sprite": "pcb/ChipR.png",
+        "up": ["ChipR", "ChipUR"],
+        "down": ["ChipR", "ChipDR"],
+        "left": ["Chip"],
+        "right": ["PinR"]
+    },
+    "ChipUL": {
+        "symbol": "┏",
+        "sprite": "pcb/ChipUL.png",
+        "up": ["PinU"],
+        "down": ["ChipL", "ChipDL"],
+        "left": ["PinL"],
+        "right": ["ChipU", "ChipUR"]
+    },
+    "ChipUR": {
+        "symbol": "┓",
+        "sprite": "pcb/ChipUR.png",
+        "up": ["PinU"],
+        "down": ["ChipR", "ChipDR"],
+        "left": ["ChipU", "ChipUL"],
+        "right": ["PinR"]
+    },
+    "ChipDL": {
+        "symbol": "┗",
+        "sprite": "pcb/ChipDL.png",
+        "up": ["ChipL", "ChipUL"],
+        "down": ["PinD"],
+        "left": ["PinL"],
+        "right": ["ChipD", "ChipDR"]
+    },
+    "ChipDR": {
+        "symbol": "┛",
+        "sprite": "pcb/ChipDR.png",
+        "up": ["ChipR", "ChipUR"],
+        "down": ["PinD"],
+        "left": ["ChipD", "ChipDL"],
+        "right": ["PinR"]
+    },
+    "PinU": {
+        "symbol": "╽",
+        "sprite": "pcb/PinU.png",
+        "up": ["WireUD", "WireDL", "WireDR", "WireUDL", "WireUDR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinD"],
+        "down": ["ChipU", "ChipUL", "ChipUR"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinU"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinU"]
+    },
+    "PinD": {
+        "symbol": "╿",
+        "sprite": "pcb/PinD.png",
+        "up": ["ChipD", "ChipDL", "ChipDR"],
+        "down": ["WireUD", "WireUL", "WireUR", "WireUDL", "WireUDR", "WireULR", "WireUDLR", "WireDiag", "WireAntidiag", "PinU"],
+        "left": ["Board", "WireUD", "WireUL", "WireDL", "WireUDL", "PinD"],
+        "right": ["Board", "WireUD", "WireUR", "WireDR", "WireUDR", "PinD"]
+    },
+    "PinL": {
+        "symbol": "╼",
+        "sprite": "pcb/PinL.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinL"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinL"],
+        "left": ["WireUR", "WireDR", "WireLR", "WireUDR", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinR"],
+        "right": ["ChipL", "ChipUL", "ChipDL"]
+    },
+    "PinR": {
+        "symbol": "╾",
+        "sprite": "pcb/PinR.png",
+        "up": ["Board", "WireUL", "WireUR", "WireLR", "WireULR", "PinR"],
+        "down": ["Board", "WireDL", "WireDR", "WireLR", "WireDLR", "PinR"],
+        "left": ["ChipR", "ChipUR", "ChipDR"],
+        "right": ["WireUL", "WireDL", "WireLR", "WireUDL", "WireULR", "WireDLR", "WireUDLR", "WireDiag", "WireAntidiag", "PinL"]
+    }
+}
