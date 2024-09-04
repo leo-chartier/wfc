@@ -54,9 +54,13 @@ class WFC:
         self.reset()
     
     def reset(self) -> None:
+        valid = set(self.tiles)
+        for tile in self.tiles:
+            if self.meta.get("weight", {}).get(tile, 1) <= 0: # type: ignore
+                valid.remove(tile)
         self.grid = [
             [
-                set(self.tiles)
+                valid.copy()
                 for _ in range(self.width)
             ]
             for _ in range(self.height)
