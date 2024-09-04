@@ -41,9 +41,10 @@ class Direction(Enum):
 Tile = str
 
 Rules = dict[Tile, dict[Direction, list[Tile]]]
+Meta = dict[str, dict[Tile, str | int]]
 
 class WFC:
-    def __init__(self, width: int, height: int, tiles: list[Tile], rules: Rules, meta: dict[str, dict[Tile, str]] | None = None, use_minimal_entropy: bool = True) -> None:
+    def __init__(self, width: int, height: int, tiles: list[Tile], rules: Rules, meta: Meta | None = None, use_minimal_entropy: bool = True) -> None:
         self.width = width
         self.height = height
         self.tiles = sorted(tiles)
@@ -70,18 +71,19 @@ class WFC:
             validate(j, schema)
 
         rules: Rules = {}
-        symbols: dict[Tile, str] = {}
-        sprites: dict[Tile, str] = {}
+        meta: Meta = {
+            "symbol": {},
+            "sprite": {},
+            "weight": {},
+        }
 
         for tile, rule in j.items():
             rules[tile] = {}
 
             for key, value in rule.items():
                 match key:
-                    case "symbol":
-                        symbols[tile] = value
-                    case "sprite":
-                        sprites[tile] = value
+                    case "symbol" | "sprite" | "weight":
+                        meta[key][tile] = value
                     case "up" | "down" | "left" | "right":
                         direction: Direction = Direction._value2member_map_[key] # type: ignore
                         rules[tile][direction] = value
@@ -90,11 +92,7 @@ class WFC:
         
         tiles = get_tiles_from_rules(rules)
 
-        meta: dict[str, dict[Tile, str]] = {}
-        if symbols:
-            meta["symbols"] = symbols
-        if sprites:
-            meta["sprites"] = sprites
+        meta = {k: v for k, v in meta.items() if v}
 
         return WFC(width, height, tiles, rules, meta, use_minimal_entropy)
 
@@ -149,7 +147,12 @@ class WFC:
             return None
 
         i, j = random.choice(possibilities)
-        selected = random.choice(sorted(self.grid[i][j])) # Sorting ensures reproducibility
+        weighted_states = [
+            tile
+            for tile in sorted(self.grid[i][j]) # Sorting ensures reproducibility
+            for _ in range(self.meta["weight"].get(tile, 1)) # type: ignore
+        ]
+        selected = random.choice(weighted_states)
         self.grid[i][j] = {selected}
 
         return i, j
@@ -206,12 +209,12 @@ class WFC:
         return [[list(states)[0] for states in row] for row in self.grid]
 
     def to_image(self) -> Image.Image | None:
-        if "sprites" not in self.meta:
+        if "sprite" not in self.meta:
             return None
 
         sprites = {
             tile: Image.open(
-                os.path.join(self.meta["sprites"][tile])
+                os.path.join(self.meta["sprite"][tile]) # type: ignore
             ).convert("RGBA")
             for tile in self.tiles
         }
@@ -233,7 +236,7 @@ class WFC:
         return img
 
     def __repr__(self) -> str:
-        if "symbols" not in self.meta:
+        if "symbol" not in self.meta:
             return super().__repr__()
         
         def get_symbol(states: set[Tile]) -> str:
@@ -242,7 +245,7 @@ class WFC:
             if len(states) != 1:
                 return str(len(states))
             state = list(states)[0]
-            return self.meta["symbols"].get(state, '?')
+            return self.meta["symbol"].get(state, '?') # type: ignore
 
         return "\n".join(
             "".join(

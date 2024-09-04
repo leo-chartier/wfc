@@ -2,22 +2,26 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://github.com/leo-chartier/wfc/blob/main/schema.json",
     "title": "WFC rules",
-    "description": "Rule for a Wave Function Collapse algorithm",
+    "description": "Rule for a Wave Function Collapse algorithm.",
     "type": "object",
     "additionalProperties": {
-        "description": "The rules for a tile",
+        "description": "The rules for a tile.",
         "type": "object",
         "properties": {
             "symbol": {
-                "description": "The character that represents this tile",
+                "description": "The character that represents this tile.",
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 1
             },
             "sprite": {
-                "description": "The path to the image that represents this tile",
+                "description": "The path to the image that represents this tile.",
                 "type": "string",
                 "pattern": "^([A-Z]:[/\\\\]|/)?(\\w+[/\\\\])*\\w+\\.[a-z]+$"
+            },
+            "weight": {
+                "description": "How likely this tile will appear. The higher the more likely.",
+                "type": "integer"
             },
             "up": {
                 "description": "The tiles that can be above this one",
@@ -29,7 +33,7 @@
                 }
             },
             "down": {
-                "description": "The tiles that can be below this one",
+                "description": "The tiles that can be below this one.",
                 "type": "array",
                 "items": {
                     "data": {
@@ -38,7 +42,7 @@
                 }
             },
             "left": {
-                "description": "The tiles that can be to the left this one",
+                "description": "The tiles that can be to the left this one.",
                 "type": "array",
                 "items": {
                     "data": {
@@ -47,7 +51,7 @@
                 }
             },
             "right": {
-                "description": "The tiles that can be to the right this one",
+                "description": "The tiles that can be to the right this one.",
                 "type": "array",
                 "items": {
                     "data": {
