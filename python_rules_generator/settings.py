@@ -13,80 +13,69 @@ class Token(Enum):
 
 # TODO: Find a better way to do this
 
-class Symbol(Enum):
-    # Indent1 = (" ", Token.Whitespace)
-    # Indent2 = (" ", Token.Whitespace)
-    # Indent3 = (" ", Token.Whitespace)
-    # Indent4 = (" ", Token.Whitespace)
+class Symbol:
+    ALL: "list[Symbol]" = []
 
-    EOL = (" ", Token.Whitespace)
-    # Comment1 = (" ", Token.Whitespace)
-    # Comment2 = ("#", Token.Comment)
-    # Comment3 = (" ", Token.Comment)
-    # Comment = (".", Token.Comment)
+    def __init__(self, name: str, pattern: str, token: Token, weight: int = 1) -> None:
+        self.name = name
+        self.pattern = pattern
+        self.token = token
+        self.weight = weight
+        Symbol.ALL.append(self)
 
-    # ForF = ("f", Token.Control)
-    # ForO = ("o", Token.Control)
-    # ForR = ("r", Token.Control)
-    # For1 = (" ", Token.Whitespace)
-    # ForVar = ("\\w", Token.Variable)
-    # For2 = (" ", Token.Whitespace)
-    # ForI = ("i", Token.Control)
-    # ForN = ("n", Token.Control)
-    # For3 = (" ", Token.Whitespace)
+# Indent1 = Symbol("Indent1", " ", Token.Whitespace)
+# Indent2 = Symbol("Indent2", " ", Token.Whitespace)
+# Indent3 = Symbol("Indent3", " ", Token.Whitespace)
+# Indent4 = Symbol("Indent4", " ", Token.Whitespace)
 
-    # WhileW = ("w", Token.Control)
-    # WhileH = ("h", Token.Control)
-    # WhileI = ("i", Token.Control)
-    # WhileL = ("l", Token.Control)
-    # WhileE = ("e", Token.Control)
-    # While1 = (" ", Token.Whitespace)
+EOL = Symbol("EOL", " ", Token.Whitespace)
+Comment1 = Symbol("Comment1", " ", Token.Whitespace)
+Comment2 = Symbol("Comment2", "#", Token.Comment)
+Comment3 = Symbol("Comment3", " ", Token.Comment)
+Comment = Symbol("Comment", ".", Token.Comment)
 
-    # LoopVar = ("\\w", Token.Variable)
-    # LoopConst = ("[A-Z0-9_]", Token.Constant)
-    # RangeR = ("r", Token.Namespace)
-    # RangeA = ("a", Token.Namespace)
-    # RangeN = ("n", Token.Namespace)
-    # RangeG = ("g", Token.Namespace)
-    # RangeE = ("e", Token.Namespace)
-    # Range1 = ("(", Token.Operator)
-    # RangeNum = ("\\d", Token.Numeric)
-    # Range2 = (")", Token.Operator)
-    # LoopEnd = (":", Token.Operator)
+# ForF = Symbol("ForF", "f", Token.Control)
+# ForO = Symbol("ForO", "o", Token.Control)
+# ForR = Symbol("ForR", "r", Token.Control)
+# For1 = Symbol("For1", " ", Token.Whitespace)
+# ForVar = Symbol("ForVar", "\\w", Token.Variable)
+# For2 = Symbol("For2", " ", Token.Whitespace)
+# ForI = Symbol("ForI", "i", Token.Control)
+# ForN = Symbol("ForN", "n", Token.Control)
+# For3 = Symbol("For3", " ", Token.Whitespace)
 
-    AssignationVar1 = ("\\w", Token.Variable)
-    Assignation1 = (" ", Token.Whitespace)
-    AssignationEq = ("=", Token.Operator)
-    Assignation2 = (" ", Token.Whitespace)
-    AssignationVar2 = ("\\w", Token.Variable)
+# WhileW = Symbol("WhileW", "w", Token.Control)
+# WhileH = Symbol("WhileH", "h", Token.Control)
+# WhileI = Symbol("WhileI", "i", Token.Control)
+# WhileL = Symbol("WhileL", "l", Token.Control)
+# WhileE = Symbol("WhileE", "e", Token.Control)
+# While1 = Symbol("While1", " ", Token.Whitespace)
 
-    @property
-    def pattern(self) -> str:
-        return self.value[0]
-    
-    @property
-    def token(self) -> Token:
-        return self.value[1]
-    
-    @property
-    def weight(self) -> int:
-        if len(self.value) > 2:
-            return self.value[3]
-        return 1
+# LoopVar = Symbol("LoopVar", "\\w", Token.Variable)
+# LoopConst = Symbol("LoopConst", "[A-Z0-9_]", Token.Constant)
+# RangeR = Symbol("RangeR", "r", Token.Namespace)
+# RangeA = Symbol("RangeA", "a", Token.Namespace)
+# RangeN = Symbol("RangeN", "n", Token.Namespace)
+# RangeG = Symbol("RangeG", "g", Token.Namespace)
+# RangeE = Symbol("RangeE", "e", Token.Namespace)
+# Range1 = Symbol("Range1", "(", Token.Operator)
+# RangeNum = Symbol("RangeNum", "\\d", Token.Numeric)
+# Range2 = Symbol("Range2", ")", Token.Operator)
+# LoopEnd = Symbol("LoopEnd", ":", Token.Operator)
 
-class Multiple:
-    # One or more of this symbol
-    def __init__(self, symbol: Symbol) -> None:
-        self.symbol = symbol
+AssignationVar1 = Symbol("AssignationVar1", "\\w", Token.Variable)
+Assignation1 = Symbol("Assignation1", " ", Token.Whitespace, 20)
+AssignationEq = Symbol("AssignationEq", "=", Token.Operator, 20)
+Assignation2 = Symbol("Assignation2", " ", Token.Whitespace, 20)
+AssignationVar2 = Symbol("AssignationVar2", "\\w", Token.Variable)
 
 
 
-NEW_INDENT_BELOW = [
-    # Symbols.ForF,
-    # Symbols.WhileW,
+NEW_INDENT_BELOW: list[Symbol] = [
+    # ForF,
+    # WhileW,
 ]
 
-EOL = Multiple(Symbol.EOL)
-PHRASES = [
-    [Multiple(Symbol.AssignationVar1), Symbol.Assignation1, Symbol.AssignationEq, Symbol.Assignation2, Multiple(Symbol.AssignationVar2), EOL],
+PHRASES: list[list[Symbol]] = [
+    [AssignationVar1, AssignationVar1, Assignation1, AssignationEq, Assignation2, AssignationVar2, AssignationVar2, EOL],
 ]

@@ -31,6 +31,7 @@ COLORS = {
 
 
 
+import json
 import os
 from PIL import Image
 from PIL.ImageOps import invert
@@ -49,6 +50,9 @@ BOTTOM_CROP = (0, SPRITE_SIZE, SPRITE_SIZE, 2 * SPRITE_SIZE)
 ROOT = os.path.dirname(os.path.dirname(__file__))
 SPRITE_DIR_PATH = os.path.join(ROOT, RULE_NAME)
 RULES_PATH = os.path.join(ROOT, RULE_NAME + ".json")
+
+def get_sprite_name(symbol: Symbol, char: str, bottom: bool) -> str:
+    return f"{symbol.name}_{ord(char)}{'_'*bottom}"
 
 
 
@@ -72,6 +76,14 @@ char_to_mask = {
     for char, (x, y) in char_to_coords.items()
 }
 
+# Extract the possible characters for each symbols
+symbol_to_chars: dict[Symbol, list[str]] = {}
+for symbol in Symbol.ALL:
+    symbol_to_chars[symbol] = []
+    for char, mask in char_to_mask.items():
+        if re.match(symbol.pattern, char):
+            symbol_to_chars[symbol].append(char)
+
 
 
 # Remove old sprites if any
@@ -80,20 +92,79 @@ if os.path.isdir(SPRITE_DIR_PATH):
 os.mkdir(SPRITE_DIR_PATH)
 
 # Generate the sprites
-for symbol in Symbol:
-    for char, mask in char_to_mask.items():
-        if not re.match(symbol.pattern, char):
-            continue
-
+for symbol in Symbol.ALL:
+    for char in symbol_to_chars[symbol]:
         color = Image.new("RGB", mask.size, COLORS[symbol.token])
         sprite = Image.new("RGB", mask.size, BACKGROUND)
+        mask = char_to_mask[char]
         sprite.paste(color, mask=mask)
 
-        fn = f"{symbol.name}_{ord(char)}"
-        sprite.crop(TOP_CROP).save(os.path.join(SPRITE_DIR_PATH, fn + ".png"))
-        sprite.crop(BOTTOM_CROP).save(os.path.join(SPRITE_DIR_PATH, fn + "_.png"))
+        top_fn = get_sprite_name(symbol, char, False)
+        top_fp = os.path.join(SPRITE_DIR_PATH, top_fn + ".png")
+        sprite.crop(TOP_CROP).save(top_fp)
+
+        bottom_fn = get_sprite_name(symbol, char, True)
+        bottom_fp = os.path.join(SPRITE_DIR_PATH, bottom_fn + ".png")
+        sprite.crop(BOTTOM_CROP).save(bottom_fp)
 
 
 
-# Generate the rules
-# TODO
+# Prepare the rules
+rules: dict[str, dict[str, str | int | set[str] | list[str]]] = {}
+all_top_names: set[str] = set()
+all_bottom_names: set[str] = set()
+for symbol in sorted(symbol_to_chars, key=lambda symbol: symbol.name):
+    for char in symbol_to_chars[symbol]:
+
+        top_name = get_sprite_name(symbol, char, False)
+        bottom_name = get_sprite_name(symbol, char, True)
+
+        all_top_names.add(top_name)
+        all_bottom_names.add(bottom_name)
+        
+        rules[top_name] = {
+            "sprite": f"{RULE_NAME}/{top_name}.png",
+            "weight": symbol.weight,
+            "up": set(),
+            "down": {bottom_name},
+            "left": set(),
+            "right": set(),
+        }
+        rules[bottom_name] = {
+            "sprite": f"{RULE_NAME}/{bottom_name}.png",
+            "weight": symbol.weight,
+            "up": {top_name},
+            "down": set(),
+            "left": set(),
+            "right": set(),
+        }
+
+# Add vertical connections
+for top_name in all_top_names:
+    rules[top_name]["up"] = all_bottom_names
+for bottom_name in all_bottom_names:
+    rules[bottom_name]["down"] = all_top_names
+
+
+
+# Generate remaining connections
+for phrase in PHRASES:
+    for symbol_left, symbol_right in zip(phrase, phrase[1:]):
+        for char_left in symbol_to_chars[symbol_left]:
+            for char_right in symbol_to_chars[symbol_right]:
+                for bottom in (False, True):
+                    name_left = get_sprite_name(symbol_left, char_left, bottom)
+                    name_right = get_sprite_name(symbol_right, char_right, bottom)
+
+                    rules[name_right]["left"].add(name_left) # type: ignore
+                    rules[name_left]["right"].add(name_right) # type: ignore
+
+
+
+# Save the rules
+for name in rules:
+    for direction in ["up", "down", "left", "right"]:
+        rules[name][direction] = sorted(rules[name][direction]) # type: ignore
+
+with open(RULES_PATH, "w", encoding="utf-8") as f:
+    json.dump(rules, f, indent=4)
