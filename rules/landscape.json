@@ -1,7 +1,7 @@
 {
     "Sky": {
         "symbol": ".",
-        "sprite": "landscape/Sky.png",
+        "sprite": "sprites/landscape/Sky.png",
         "up": ["Sky"],
         "down": ["Sky", "Grass", "TLC", "TRC"],
         "left": ["Sky", "RightWall", "TRC"],
@@ -9,7 +9,7 @@
     },
     "Dirt": {
         "symbol": "#",
-        "sprite": "landscape/Dirt.png",
+        "sprite": "sprites/landscape/Dirt.png",
         "up": ["Dirt", "Grass"],
         "down": ["Dirt", "Grass", "TLC", "TRC"],
         "left": ["Dirt", "LeftWall", "RightWall", "TRC"],
@@ -17,7 +17,7 @@
     },
     "Grass": {
         "symbol": "-",
-        "sprite": "landscape/Grass.png",
+        "sprite": "sprites/landscape/Grass.png",
         "up": ["Sky", "Dirt", "Grass", "LeftWall", "RightWall", "TLC", "TRC"],
         "down": ["Dirt", "Grass", "TLC", "TRC"],
         "left": ["Grass", "RightWall", "TLC"],
@@ -25,7 +25,7 @@
     },
     "LeftWall": {
         "symbol": "{",
-        "sprite": "landscape/LeftWall.png",
+        "sprite": "sprites/landscape/LeftWall.png",
         "up": ["LeftWall", "TLC"],
         "down": ["Grass", "LeftWall", "TRC"],
         "left": ["Sky", "Dirt", "Grass", "TLC"],
@@ -33,7 +33,7 @@
     },
     "RightWall": {
         "symbol": "}",
-        "sprite": "landscape/RightWall.png",
+        "sprite": "sprites/landscape/RightWall.png",
         "up": ["RightWall", "TRC"],
         "down": ["Grass", "RightWall", "TLC"],
         "left": ["Dirt", "LeftWall"],
@@ -41,7 +41,7 @@
     },
     "TLC": {
         "symbol": "/",
-        "sprite": "landscape/TLC.png",
+        "sprite": "sprites/landscape/TLC.png",
         "up": ["Sky", "Dirt", "Grass", "RightWall", "TRC"],
         "down": ["Grass", "LeftWall", "TRC"],
         "left": ["Sky", "Dirt"],
@@ -49,7 +49,7 @@
     },
     "TRC": {
         "symbol": "\\",
-        "sprite": "landscape/TRC.png",
+        "sprite": "sprites/landscape/TRC.png",
         "up": ["Sky", "Dirt", "Grass", "LeftWall", "TLC"],
         "down": ["Grass", "RightWall", "TLC"],
         "left": ["Grass", "RightWall", "TLC"],

@@ -12,7 +12,7 @@ SPRITESHEET_URL = "https://raw.githubusercontent.com/sunaku/tamzen-font/master/p
 SPRITE_SIZE = 6 # Assumes that this is the width and 1/2 the height of a character
 EXTRACT_ROWS = range(1, 4) # The first row is the filename. We only care about the next 3.
 
-from settings import *
+from python_config import *
 
 BACKGROUND = "#1F1F1F"
 COLORS = {
@@ -49,8 +49,8 @@ TOP_CROP = (0, 0, SPRITE_SIZE, SPRITE_SIZE)
 BOTTOM_CROP = (0, SPRITE_SIZE, SPRITE_SIZE, 2 * SPRITE_SIZE)
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
-SPRITE_DIR_PATH = os.path.join(ROOT, RULE_NAME)
-RULES_PATH = os.path.join(ROOT, RULE_NAME + ".json")
+SPRITE_DIR_PATH = os.path.join(ROOT, "sprites", RULE_NAME)
+RULES_PATH = os.path.join(ROOT, "rules", RULE_NAME + ".json")
 
 def get_sprite_name(symbol: Symbol, char: str, bottom: bool) -> str:
     return f"{symbol.name}_{ord(char)}{'_'*bottom}"
@@ -130,14 +130,14 @@ for symbol in sorted(symbol_to_chars, key=lambda symbol: symbol.name):
         weights[bottom_name] = weight
         
         rules[top_name] = {
-            "sprite": f"{RULE_NAME}/{top_name}.png",
+            "sprite": f"sprites/{RULE_NAME}/{top_name}.png",
             "up": set(),
             "down": {bottom_name},
             "left": set(),
             "right": set(),
         }
         rules[bottom_name] = {
-            "sprite": f"{RULE_NAME}/{bottom_name}.png",
+            "sprite": f"sprites/{RULE_NAME}/{bottom_name}.png",
             "up": {top_name},
             "down": set(),
             "left": set(),

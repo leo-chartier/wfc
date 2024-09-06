@@ -1,7 +1,7 @@
 {
     "000 ": {
         "symbol": " ",
-        "sprite": "white.png",
+        "sprite": "sprites/white.png",
         "up": [
             "000 ",
             "101 ",
@@ -25,7 +25,7 @@
     },
     "100#": {
         "symbol": "#",
-        "sprite": "black.png",
+        "sprite": "sprites/black.png",
         "up": [
             "000 ",
             "101 ",
@@ -49,7 +49,7 @@
     },
     "010#": {
         "symbol": "#",
-        "sprite": "black.png",
+        "sprite": "sprites/black.png",
         "up": [
             "100#",
             "010#",
@@ -73,7 +73,7 @@
     },
     "110#": {
         "symbol": "#",
-        "sprite": "black.png",
+        "sprite": "sprites/black.png",
         "up": [
             "100#",
             "010#",
@@ -97,7 +97,7 @@
     },
     "001#": {
         "symbol": "#",
-        "sprite": "black.png",
+        "sprite": "sprites/black.png",
         "up": [
             "000 ",
             "101 ",
@@ -121,7 +121,7 @@
     },
     "101 ": {
         "symbol": " ",
-        "sprite": "white.png",
+        "sprite": "sprites/white.png",
         "up": [
             "000 ",
             "101 ",
@@ -145,7 +145,7 @@
     },
     "011 ": {
         "symbol": " ",
-        "sprite": "white.png",
+        "sprite": "sprites/white.png",
         "up": [
             "100#",
             "010#",
@@ -169,7 +169,7 @@
     },
     "111 ": {
         "symbol": " ",
-        "sprite": "white.png",
+        "sprite": "sprites/white.png",
         "up": [
             "100#",
             "010#",
