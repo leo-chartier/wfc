@@ -32,6 +32,7 @@ COLORS = {
 
 
 import json
+import math
 import os
 from PIL import Image
 from PIL.ImageOps import invert
@@ -113,7 +114,10 @@ for symbol in Symbol.ALL:
 rules: dict[str, dict[str, str | int | set[str] | list[str]]] = {}
 all_top_names: set[str] = set()
 all_bottom_names: set[str] = set()
+weights: dict[str, int] = {}
+base_weight = math.prod(set(map(len, symbol_to_chars.values())))
 for symbol in sorted(symbol_to_chars, key=lambda symbol: symbol.name):
+    weight = symbol.avg_length * base_weight // len(symbol_to_chars[symbol])
     for char in symbol_to_chars[symbol]:
 
         top_name = get_sprite_name(symbol, char, False)
@@ -121,10 +125,12 @@ for symbol in sorted(symbol_to_chars, key=lambda symbol: symbol.name):
 
         all_top_names.add(top_name)
         all_bottom_names.add(bottom_name)
+
+        weights[top_name] = weight
+        weights[bottom_name] = weight
         
         rules[top_name] = {
             "sprite": f"{RULE_NAME}/{top_name}.png",
-            "weight": symbol.weight,
             "up": set(),
             "down": {bottom_name},
             "left": set(),
@@ -132,18 +138,21 @@ for symbol in sorted(symbol_to_chars, key=lambda symbol: symbol.name):
         }
         rules[bottom_name] = {
             "sprite": f"{RULE_NAME}/{bottom_name}.png",
-            "weight": symbol.weight,
             "up": {top_name},
             "down": set(),
             "left": set(),
             "right": set(),
         }
 
+gcd = math.gcd(*weights.values())
+for name, weight in weights.items():
+    rules[name]["weight"] = weight // gcd
+
 # Add vertical connections
 for top_name in all_top_names:
-    rules[top_name]["up"] = all_bottom_names
+    rules[top_name]["up"] = all_bottom_names.copy()
 for bottom_name in all_bottom_names:
-    rules[bottom_name]["down"] = all_top_names
+    rules[bottom_name]["down"] = all_top_names.copy()
 
 
 
@@ -158,6 +167,39 @@ for phrase in PHRASES:
 
                     rules[name_right]["left"].add(name_left) # type: ignore
                     rules[name_left]["right"].add(name_right) # type: ignore
+
+
+
+# Apply restrictions
+OPPOSITE = {"up": "down", "down": "up", "left": "right", "right": "left"}
+DIR_TO_BOTTOM = {
+    "up": ((False, True),),
+    "down": ((True, False),),
+    "left": ((False, False), (True, True)),
+    "right": ((False, False), (True, True))
+}
+
+for symbol1, rule in FORCED.items():
+    for direction, symbols in rule.items():
+        for bottom1, bottom2 in DIR_TO_BOTTOM[direction]:
+            for char1 in symbol_to_chars[symbol1]:
+                name1 = get_sprite_name(symbol1, char1, bottom1)
+
+                rules[name1][direction] = set()
+
+                # Re-add those symbols
+                for symbol2 in symbols:
+                    for char2 in symbol_to_chars[symbol2]:
+                        name2 = get_sprite_name(symbol2, char2, bottom2)
+                        rules[name1][direction].add(name2) # type: ignore
+
+                # Unlink the others
+                for symbol2 in Symbol.ALL:
+                    if symbol2 in symbols:
+                        continue
+                    for char2 in symbol_to_chars[symbol2]:
+                        name2 = get_sprite_name(symbol2, char2, bottom2)
+                        rules[name2][OPPOSITE[direction]].remove(name1) # type: ignore
 
 
 
