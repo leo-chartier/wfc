@@ -6,6 +6,7 @@ from jsonschema import validate
 import os
 from PIL import Image
 import random
+from time import time
 from typing import TextIO
 
 class Direction(Enum):
@@ -154,7 +155,7 @@ class WFC:
         weighted_states = [
             tile
             for tile in sorted(self.grid[i][j]) # Sorting ensures reproducibility
-            for _ in range(self.meta["weight"].get(tile, 1)) # type: ignore
+            for _ in range(self.meta.get("weight", {}).get(tile, 1)) # type: ignore
         ]
         selected = random.choice(weighted_states)
         self.grid[i][j] = {selected}
@@ -347,7 +348,10 @@ def main() -> None:
     if not wfc.verify_rules():
         return
 
+    start = time()
     wfc.generate()
+    elapsed = time() - start
+    print(f"{elapsed // 60}m {elapsed % 60:.3}s")
     print(wfc)
 
     img = wfc.to_image()
