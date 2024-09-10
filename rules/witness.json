@@ -1,0 +1,629 @@
+{
+    "WallU": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": [],
+        "down": ["LR", "DL", "DR", "DLR", "LR-LR", "LR-RL", "DL-DL", "DL-LD", "DR-DR", "DR-RD", "DLR-DL", "DLR-LD", "DLR-DR", "DLR-RD", "DLR-LR", "DLR-RL"],
+        "left": ["WallU", "WallUL", "EndD"],
+        "right": ["WallU", "WallUR", "EndD"]
+    },
+    "WallD": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": ["LR", "UL", "UR", "ULR", "LR-LR", "LR-RL", "UL-UL", "UL-LU", "UR-UR", "UR-RU", "ULR-UL", "ULR-LU", "ULR-UR", "ULR-RU", "ULR-LR", "ULR-RL"],
+        "down": [],
+        "left": ["WallD", "WallDL", "EndU"],
+        "right": ["WallD", "WallDR", "EndU"]
+    },
+    "WallL": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": ["WallL", "WallUL", "EndR"],
+        "down": ["WallL", "WallDL", "EndR"],
+        "left": [],
+        "right": ["UD", "UR", "DR", "UDR", "UD-UD", "UD-DU", "UR-UR", "UR-RU", "DR-DR", "DR-RD", "UDR-UD", "UDR-DU", "UDR-UR", "UDR-RU", "UDR-DR", "UDR-RD"]
+    },
+    "WallR": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": ["WallR", "WallUR", "EndL"],
+        "down": ["WallR", "WallDR", "EndL"],
+        "left": ["UD", "UL", "DL", "UDL", "UD-UD", "UD-DU", "UL-UL", "UL-LU", "DL-DL", "DL-LD", "UDL-UD", "UDL-DU", "UDL-UL", "UDL-LU", "UDL-DL", "UDL-LD"],
+        "right": []
+    },
+    "WallUL": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": [],
+        "down": ["WallL", "EndR"],
+        "left": [],
+        "right": ["WallU", "EndD"]
+    },
+    "WallUR": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": [],
+        "down": ["WallR", "EndL"],
+        "left": ["WallU", "EndD"],
+        "right": []
+    },
+    "WallDL": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": ["WallL", "EndR"],
+        "down": [],
+        "left": [],
+        "right": ["WallD", "EndU"]
+    },
+    "WallDR": {
+        "symbol": "▒",
+        "sprite": "sprites/witness/46.png",
+        "weight": 1000,
+        "up": ["WallR", "EndL"],
+        "down": [],
+        "left": ["WallD", "EndU"],
+        "right": []
+    },
+    "UD": {
+        "symbol": "│",
+        "sprite": "sprites/witness/1.png",
+        "up": ["DL", "DR", "DLR", "UDR", "UDL", "UDLR", "UDL-UL", "UDL-LU", "UDR-UR", "UDR-RU", "DLR-LR", "DLR-RL", "UDLR-UL", "UDLR-LU", "UDLR-UR", "UDLR-RU", "UDLR-LR", "UDLR-RL", "StartU", "StartL", "StartR"],
+        "down": ["UL", "UR", "ULR", "UDR", "UDL", "UDLR", "UDL-DL", "UDL-LD", "UDR-DR", "UDR-RD", "ULR-LR", "ULR-RL", "UDLR-DL", "UDLR-LD", "UDLR-DR", "UDLR-RD", "UDLR-LR", "UDLR-RL", "StartD", "StartL", "StartR"],
+        "left": ["WallL", "NoSymbol"],
+        "right": ["WallR", "NoSymbol"]
+    },
+    "LR": {
+        "symbol": "─",
+        "sprite": "sprites/witness/2.png",
+        "up": ["WallU", "NoSymbol"],
+        "down": ["WallD", "NoSymbol"],
+        "left": ["UR", "DR", "ULR", "DLR", "UDR", "UDLR", "UDR-UD", "UDR-DU", "ULR-UL", "ULR-LU", "DLR-DL", "DLR-LD", "UDLR-UD", "UDLR-DU", "UDLR-UL", "UDLR-LU", "UDLR-DL", "UDLR-LD", "StartL", "StartU", "StartD"],
+        "right": ["UL", "DL", "ULR", "DLR", "UDL", "UDLR", "UDL-UD", "UDL-DU", "ULR-UR", "ULR-RU", "DLR-DR", "DLR-RD", "UDLR-UD", "UDLR-DU", "UDLR-UR", "UDLR-RU", "UDLR-DR", "UDLR-RD", "StartR", "StartU", "StartD"]
+    },
+    "UL": {
+        "symbol": "┘",
+        "sprite": "sprites/witness/3.png",
+        "up": ["UD"],
+        "down": ["WallD"],
+        "left": ["LR"],
+        "right": ["WallR"]
+    },
+    "UR": {
+        "symbol": "└",
+        "sprite": "sprites/witness/4.png",
+        "up": ["UD"],
+        "down": ["WallD"],
+        "left": ["WallL"],
+        "right": ["LR"]
+    },
+    "DL": {
+        "symbol": "┐",
+        "sprite": "sprites/witness/5.png",
+        "up": ["WallU"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["WallR"]
+    },
+    "DR": {
+        "symbol": "┌",
+        "sprite": "sprites/witness/6.png",
+        "up": ["WallU"],
+        "down": ["UD"],
+        "left": ["WallL"],
+        "right": ["LR"]
+    },
+    "ULR": {
+        "symbol": "┴",
+        "sprite": "sprites/witness/7.png",
+        "weight": 0,
+        "up": ["UD"],
+        "down": ["WallD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "DLR": {
+        "symbol": "┬",
+        "sprite": "sprites/witness/8.png",
+        "up": ["WallU"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "UDL": {
+        "symbol": "┤",
+        "sprite": "sprites/witness/9.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["WallR"]
+    },
+    "UDR": {
+        "symbol": "├",
+        "sprite": "sprites/witness/10.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["WallL"],
+        "right": ["LR"]
+    },
+    "UDLR": {
+        "symbol": "┼",
+        "sprite": "sprites/witness/11.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "UD-UD": {
+        "symbol": "┃",
+        "sprite": "sprites/witness/17.png",
+        "up": ["DL-LD", "DR-RD", "DLR-LD", "DLR-RD", "UDR-UD", "UDR-RD", "UDL-UD", "UDL-LD", "UDLR-UD", "UDLR-LD", "UDLR-RD", "StartD"],
+        "down": ["UL-UL", "UR-UR", "ULR-UL", "ULR-UR", "UDR-UD", "UDR-UR", "UDL-UD", "UDL-UL", "UDLR-UD", "UDLR-UL", "UDLR-UR"],
+        "left": ["WallL", "NoSymbol"],
+        "right": ["WallR", "NoSymbol"]
+    },
+    "UD-DU": {
+        "symbol": "┃",
+        "sprite": "sprites/witness/17.png",
+        "up": ["DL-DL", "DR-DR", "DLR-DL", "DLR-DR", "UDR-DU", "UDR-DR", "UDL-DU", "UDL-DL", "UDLR-DU", "UDLR-DL", "UDLR-DR"],
+        "down": ["UL-LU", "UR-RU", "ULR-LU", "ULR-RU", "UDR-DU", "UDR-RU", "UDL-DU", "UDL-LU", "UDLR-DU", "UDLR-LU", "UDLR-RU", "StartU"],
+        "left": ["WallL", "NoSymbol"],
+        "right": ["WallR", "NoSymbol"]
+    },
+    "LR-LR": {
+        "symbol": "━",
+        "sprite": "sprites/witness/18.png",
+        "up": ["WallU", "NoSymbol"],
+        "down": ["WallD", "NoSymbol"],
+        "left": ["UR-UR", "DR-DR", "ULR-UR", "ULR-LR", "DLR-DR", "DLR-LR", "UDR-UR", "UDR-DR", "UDLR-UR", "UDLR-DR", "UDLR-LR", "StartR"],
+        "right": ["UL-LU", "DL-LD", "ULR-LU", "ULR-LR", "DLR-LD", "DLR-LR", "UDL-LU", "UDL-LD", "UDLR-LU", "UDLR-LD", "UDLR-LR"]
+    },
+    "LR-RL": {
+        "symbol": "━",
+        "sprite": "sprites/witness/18.png",
+        "up": ["WallU", "NoSymbol"],
+        "down": ["WallD", "NoSymbol"],
+        "left": ["UR-RU", "DR-RD", "ULR-RU", "ULR-RL", "DLR-RD", "DLR-RL", "UDR-RU", "UDR-RD", "UDLR-RU", "UDLR-RD", "UDLR-RL"],
+        "right": ["UL-UL", "DL-DL", "ULR-UL", "ULR-RL", "DLR-DL", "DLR-RL", "UDL-UL", "UDL-DL", "UDLR-UL", "UDLR-DL", "UDLR-RL", "StartL"]
+    },
+    "UL-UL": {
+        "symbol": "┛",
+        "sprite": "sprites/witness/19.png",
+        "up": ["UD-UD"],
+        "down": ["WallD"],
+        "left": ["LR-RL"],
+        "right": ["WallR"]
+    },
+    "UL-LU": {
+        "symbol": "┛",
+        "sprite": "sprites/witness/19.png",
+        "up": ["UD-DU"],
+        "down": ["WallD"],
+        "left": ["LR-LR"],
+        "right": ["WallR"]
+    },
+    "UR-UR": {
+        "symbol": "┗",
+        "sprite": "sprites/witness/20.png",
+        "up": ["UD-UD"],
+        "down": ["WallD"],
+        "left": ["WallL"],
+        "right": ["LR-LR"]
+    },
+    "UR-RU": {
+        "symbol": "┗",
+        "sprite": "sprites/witness/20.png",
+        "up": ["UD-DU"],
+        "down": ["WallD"],
+        "left": ["WallL"],
+        "right": ["LR-RL"]
+    },
+    "DL-DL": {
+        "symbol": "┓",
+        "sprite": "sprites/witness/21.png",
+        "up": ["WallU"],
+        "down": ["UD-DU"],
+        "left": ["LR-RL"],
+        "right": ["WallR"]
+    },
+    "DL-LD": {
+        "symbol": "┓",
+        "sprite": "sprites/witness/21.png",
+        "up": ["WallU"],
+        "down": ["UD-UD"],
+        "left": ["LR-LR"],
+        "right": ["WallR"]
+    },
+    "DR-DR": {
+        "symbol": "┏",
+        "sprite": "sprites/witness/22.png",
+        "up": ["WallU"],
+        "down": ["UD-DU"],
+        "left": ["WallL"],
+        "right": ["LR-LR"]
+    },
+    "DR-RD": {
+        "symbol": "┏",
+        "sprite": "sprites/witness/22.png",
+        "up": ["WallU"],
+        "down": ["UD-UD"],
+        "left": ["WallL"],
+        "right": ["LR-RL"]
+    },
+    "ULR-UL": {
+        "symbol": "┹",
+        "sprite": "sprites/witness/23.png",
+        "weight": 0,
+        "up": ["UD-UD"],
+        "down": ["WallD"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["LR"]
+    },
+    "ULR-LU": {
+        "symbol": "┹",
+        "sprite": "sprites/witness/23.png",
+        "weight": 0,
+        "up": ["UD-DU", "EndD"],
+        "down": ["WallD"],
+        "left": ["LR-LR"],
+        "right": ["LR"]
+    },
+    "ULR-UR": {
+        "symbol": "┺",
+        "sprite": "sprites/witness/24.png",
+        "weight": 0,
+        "up": ["UD-UD"],
+        "down": ["WallD"],
+        "left": ["LR"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "ULR-RU": {
+        "symbol": "┺",
+        "sprite": "sprites/witness/24.png",
+        "weight": 0,
+        "up": ["UD-DU", "EndD"],
+        "down": ["WallD"],
+        "left": ["LR"],
+        "right": ["LR-RL"]
+    },
+    "ULR-LR": {
+        "symbol": "┷",
+        "sprite": "sprites/witness/25.png",
+        "weight": 0,
+        "up": ["UD"],
+        "down": ["WallD"],
+        "left": ["LR-LR"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "ULR-RL": {
+        "symbol": "┷",
+        "sprite": "sprites/witness/25.png",
+        "weight": 0,
+        "up": ["UD"],
+        "down": ["WallD"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["LR-RL"]
+    },
+    "DLR-DL": {
+        "symbol": "┱",
+        "sprite": "sprites/witness/26.png",
+        "up": ["WallU"],
+        "down": ["UD-DU"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["LR"]
+    },
+    "DLR-LD": {
+        "symbol": "┱",
+        "sprite": "sprites/witness/26.png",
+        "up": ["WallU"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["LR-LR"],
+        "right": ["LR"]
+    },
+    "DLR-DR": {
+        "symbol": "┲",
+        "sprite": "sprites/witness/27.png",
+        "up": ["WallU"],
+        "down": ["UD-DU"],
+        "left": ["LR"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "DLR-RD": {
+        "symbol": "┲",
+        "sprite": "sprites/witness/27.png",
+        "up": ["WallU"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["LR"],
+        "right": ["LR-RL"]
+    },
+    "DLR-LR": {
+        "symbol": "┯",
+        "sprite": "sprites/witness/28.png",
+        "up": ["WallU"],
+        "down": ["UD"],
+        "left": ["LR-LR"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "DLR-RL": {
+        "symbol": "┯",
+        "sprite": "sprites/witness/28.png",
+        "up": ["WallU"],
+        "down": ["UD"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["LR-RL"]
+    },
+    "UDL-UD": {
+        "symbol": "┨",
+        "sprite": "sprites/witness/29.png",
+        "up": ["UD-UD"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["LR"],
+        "right": ["WallR"]
+    },
+    "UDL-DU": {
+        "symbol": "┨",
+        "sprite": "sprites/witness/29.png",
+        "up": ["UD-DU", "EndD"],
+        "down": ["UD-DU"],
+        "left": ["LR"],
+        "right": ["WallR"]
+    },
+    "UDL-UL": {
+        "symbol": "┩",
+        "sprite": "sprites/witness/30.png",
+        "up": ["UD-UD"],
+        "down": ["UD"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["WallR"]
+    },
+    "UDL-LU": {
+        "symbol": "┩",
+        "sprite": "sprites/witness/30.png",
+        "up": ["UD-DU", "EndD"],
+        "down": ["UD"],
+        "left": ["LR-LR"],
+        "right": ["WallR"]
+    },
+    "UDL-DL": {
+        "symbol": "┪",
+        "sprite": "sprites/witness/31.png",
+        "up": ["UD"],
+        "down": ["UD-DU"],
+        "left": ["LR-RL", "EndR"],
+        "right": ["WallR"]
+    },
+    "UDL-LD": {
+        "symbol": "┪",
+        "sprite": "sprites/witness/31.png",
+        "up": ["UD"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["LR-LR"],
+        "right": ["WallR"]
+    },
+    "UDR-UD": {
+        "symbol": "┠",
+        "sprite": "sprites/witness/32.png",
+        "up": ["UD-UD"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["WallL"],
+        "right": ["LR"]
+    },
+    "UDR-DU": {
+        "symbol": "┠",
+        "sprite": "sprites/witness/32.png",
+        "up": ["UD-DU", "EndD"],
+        "down": ["UD-DU"],
+        "left": ["WallL"],
+        "right": ["LR"]
+    },
+    "UDR-UR": {
+        "symbol": "┡",
+        "sprite": "sprites/witness/33.png",
+        "up": ["UD-UD"],
+        "down": ["UD"],
+        "left": ["WallL"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "UDR-RU": {
+        "symbol": "┡",
+        "sprite": "sprites/witness/33.png",
+        "up": ["UD-DU", "EndD"],
+        "down": ["UD"],
+        "left": ["WallL"],
+        "right": ["LR-RL"]
+    },
+    "UDR-DR": {
+        "symbol": "┢",
+        "sprite": "sprites/witness/34.png",
+        "up": ["UD"],
+        "down": ["UD-DU"],
+        "left": ["WallL"],
+        "right": ["LR-LR", "EndL"]
+    },
+    "UDR-RD": {
+        "symbol": "┢",
+        "sprite": "sprites/witness/34.png",
+        "up": ["UD"],
+        "down": ["UD-UD", "EndU"],
+        "left": ["WallL"],
+        "right": ["LR-RL"]
+    },
+    "UDLR-UD": {
+        "symbol": "╂",
+        "sprite": "sprites/witness/35.png",
+        "up": ["UD-UD"],
+        "down": ["UD-UD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "UDLR-DU": {
+        "symbol": "╂",
+        "sprite": "sprites/witness/35.png",
+        "up": ["UD-DU"],
+        "down": ["UD-DU"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "UDLR-LR": {
+        "symbol": "┿",
+        "sprite": "sprites/witness/36.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR-LR"],
+        "right": ["LR-LR"]
+    },
+    "UDLR-RL": {
+        "symbol": "┿",
+        "sprite": "sprites/witness/36.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR-RL"],
+        "right": ["LR-RL"]
+    },
+    "UDLR-UL": {
+        "symbol": "╃",
+        "sprite": "sprites/witness/37.png",
+        "up": ["UD-UD"],
+        "down": ["UD"],
+        "left": ["LR-RL"],
+        "right": ["LR"]
+    },
+    "UDLR-LU": {
+        "symbol": "╃",
+        "sprite": "sprites/witness/37.png",
+        "up": ["UD-DU"],
+        "down": ["UD"],
+        "left": ["LR-LR"],
+        "right": ["LR"]
+    },
+    "UDLR-UR": {
+        "symbol": "╄",
+        "sprite": "sprites/witness/38.png",
+        "up": ["UD-UD"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR-LR"]
+    },
+    "UDLR-RU": {
+        "symbol": "╄",
+        "sprite": "sprites/witness/38.png",
+        "up": ["UD-DU"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR-RL"]
+    },
+    "UDLR-DL": {
+        "symbol": "╅",
+        "sprite": "sprites/witness/39.png",
+        "up": ["UD"],
+        "down": ["UD-DU"],
+        "left": ["LR-RL"],
+        "right": ["LR"]
+    },
+    "UDLR-LD": {
+        "symbol": "╅",
+        "sprite": "sprites/witness/39.png",
+        "up": ["UD"],
+        "down": ["UD-UD"],
+        "left": ["LR-LR"],
+        "right": ["LR"]
+    },
+    "UDLR-DR": {
+        "symbol": "╆",
+        "sprite": "sprites/witness/40.png",
+        "up": ["UD"],
+        "down": ["UD-DU"],
+        "left": ["LR"],
+        "right": ["LR-LR"]
+    },
+    "UDLR-RD": {
+        "symbol": "╆",
+        "sprite": "sprites/witness/40.png",
+        "up": ["UD"],
+        "down": ["UD-UD"],
+        "left": ["LR"],
+        "right": ["LR-RL"]
+    },
+    "StartU": {
+        "symbol": "╀",
+        "sprite": "sprites/witness/41.png",
+        "up": ["UD-DU"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "StartD": {
+        "symbol": "╁",
+        "sprite": "sprites/witness/41.png",
+        "up": ["UD"],
+        "down": ["UD-UD"],
+        "left": ["LR"],
+        "right": ["LR"]
+    },
+    "StartL": {
+        "symbol": "┽",
+        "sprite": "sprites/witness/41.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR-RL"],
+        "right": ["LR"]
+    },
+    "StartR": {
+        "symbol": "┾",
+        "sprite": "sprites/witness/41.png",
+        "up": ["UD"],
+        "down": ["UD"],
+        "left": ["LR"],
+        "right": ["LR-LR"]
+    },
+    "EndU": {
+        "symbol": "╹",
+        "sprite": "sprites/witness/43.png",
+        "weight": 1000,
+        "up": ["UDL-UD", "UDL-LD", "UDR-UD", "UDR-RD", "DLR-LD", "DLR-RD"],
+        "down": [],
+        "left": ["WallD", "WallDL"],
+        "right": ["WallD", "WallDR"]
+    },
+    "EndD": {
+        "symbol": "╻",
+        "sprite": "sprites/witness/42.png",
+        "weight": 1000,
+        "up": [],
+        "down": ["UDL-DU", "UDL-LU", "UDR-DU", "UDR-RU", "ULR-LU", "ULR-RU"],
+        "left": ["WallU", "WallUL"],
+        "right": ["WallU", "WallUR"]
+    },
+    "EndL": {
+        "symbol": "╸",
+        "sprite": "sprites/witness/45.png",
+        "weight": 1000,
+        "up": ["WallR", "WallUR"],
+        "down": ["WallR", "WallDR"],
+        "left": ["UDR-UR", "UDR-DR", "ULR-UR", "ULR-LR", "DLR-DR", "DLR-LR"],
+        "right": []
+    },
+    "EndR": {
+        "symbol": "╺",
+        "sprite": "sprites/witness/44.png",
+        "weight": 1000,
+        "up": ["WallL", "WallUL"],
+        "down": ["WallL", "WallDL"],
+        "left": [],
+        "right": ["UDL-UL", "UDL-DL", "ULR-UL", "ULR-RL", "DLR-DL", "DLR-RL"]
+    },
+    "NoSymbol": {
+        "symbol": " ",
+        "sprite": "sprites/witness/46.png",
+        "up": ["LR", "LR-LR", "LR-RL"],
+        "down": ["LR", "LR-LR", "LR-RL"],
+        "left": ["UD", "UD-UD", "UD-DU"],
+        "right": ["UD", "UD-UD", "UD-DU"]
+    }
+}
