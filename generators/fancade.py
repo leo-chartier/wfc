@@ -169,16 +169,15 @@ def get_connection(tile: Tile, line: int, right_side: bool) -> Connection | None
 def names_generator(tile: Tile, line: int, right_side: bool) -> Generator[str, None, None]:
     connections = {get_connection(tile, line, right_side)}
     connections.add(None)
-    can_have_exec = not right_side and tile in HAS_EXEC
+    has_exec = not right_side and tile in HAS_EXEC
 
     for connection in connections:
-        for has_exec in range(int(can_have_exec) + 1):
-            left = connection.value if not right_side and connection else NO_CONNECTION
-            right = connection.value if right_side and connection else NO_CONNECTION
-            up = Connection.Execution.value if has_exec and line == 0 else NO_CONNECTION
-            down = Connection.Execution.value if has_exec and line + 1 == HEIGHTS.get(tile, DEFAULT_HEIGHT) else NO_CONNECTION
-            name = f"{tile.name}_{line+1}{'R' if right_side else 'L'}_{left}{right}{up}{down}"
-            yield name
+        left = connection.value if not right_side and connection else NO_CONNECTION
+        right = connection.value if right_side and connection else NO_CONNECTION
+        up = Connection.Execution.value if has_exec and line == 0 else NO_CONNECTION
+        down = Connection.Execution.value if has_exec and line + 1 == HEIGHTS.get(tile, DEFAULT_HEIGHT) else NO_CONNECTION
+        name = f"{tile.name}_{line+1}{'R' if right_side else 'L'}_{up}{right}{down}{left}"
+        yield name
 
 # Generate connections between pieces
 for tile in Tile:
@@ -211,16 +210,28 @@ for tile in Tile:
 
 
 
+def name_to_sprite(name: str) -> str:
+    # The name of the sprite is the same as the one of the tile except
+    # that the connections down and to the left do not change so they
+    # are removed
+    if name.count('_') < 2:
+        # It's air or a connection
+        return name
+    # It's a tile
+    return name[:-2]
+
 # Generate the rule file
 rules = {}
 
 for name in sorted(tiles_names):
+    sprite_name = name_to_sprite(name)
     up = sorted(set(up for up, down in up_down if down == name))
     down = sorted(set(down for up, down in up_down if up == name))
     left = sorted(set(left for left, right in up_down if right == name))
     right = sorted(set(right for left, right in up_down if left == name))
     rule = {
-        # TODO: Symbol & sprite
+        # TODO: Symbol
+        'sprite': f'sprites/fancade/{sprite_name}.png',
         'up': up,
         'down': down,
         'left': left,

@@ -17,7 +17,7 @@
             "sprite": {
                 "description": "The path to the image that represents this tile.",
                 "type": "string",
-                "pattern": "^([A-Z]:[/\\\\]|/)?(\\w+[/\\\\])*\\w+\\.[a-z]+$"
+                "pattern": "^([A-Z]:[/\\\\]|/)?([\\w\\-]+[/\\\\])*[\\w\\-]+\\.[a-z]+$"
             },
             "weight": {
                 "description": "How likely this tile will appear. The higher the more likely.",
