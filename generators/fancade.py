@@ -55,6 +55,8 @@ class WireType(Enum):
     Execution = 'E'
 NO_CONNECTION = '-'
 
+FORCE_WIRE = True
+
 
 
 DEFAULT_HEIGHT = 2
@@ -168,7 +170,8 @@ def get_connection(tile: Tile, line: int, right_side: bool) -> WireType | None:
 
 def names_generator(tile: Tile, line: int, right_side: bool) -> Generator[str, None, None]:
     connections = {get_connection(tile, line, right_side)}
-    connections.add(None)
+    if not FORCE_WIRE:
+        connections.add(None)
     has_exec = not right_side and tile in HAS_EXEC
 
     for connection in connections:
