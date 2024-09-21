@@ -113,7 +113,7 @@ class WFC:
                 error = True
         
         # Check for direction
-        for tile in self.tiles:
+        for tile in self.rules:
             for direction in Direction:
                 if direction not in self.rules[tile]:
                     print(f"Direction {direction.name} missing in the rules for tile {tile}")
@@ -122,10 +122,10 @@ class WFC:
                     error = True
                 
         # Check for overlap
-        for tile in self.tiles:
+        for tile in self.rules:
             for direction in Direction:
                 for tile2 in self.rules[tile][direction]:
-                    if tile not in self.rules[tile2][direction.opposite]:
+                    if tile2 in self.rules and tile not in self.rules[tile2][direction.opposite]:
                         print(f"Tile {tile2} found for {tile}:{direction.name} but not the other way around")
                         if early_stop:
                             return False
