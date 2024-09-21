@@ -46,7 +46,7 @@ class Tile(Enum):
     Floor = auto()
 EMPTY = 'Empty'
 
-class Connection(Enum):
+class WireType(Enum):
     Number = 'N'
     Vector = 'V'
     Rotation = 'R'
@@ -71,74 +71,74 @@ HEIGHTS  = {
 }
 
 INPUTS = {
-    Tile.If: [Connection.Bool],
-    Tile.Loop: [Connection.Number, Connection.Number],
-    Tile.BreakVec: [Connection.Vector],
-    Tile.MakeVec: [Connection.Number, Connection.Number, Connection.Number],
-    Tile.And: [Connection.Bool, Connection.Bool],
-    Tile.Camera: [Connection.Vector, Connection.Rotation, Connection.Number],
-    Tile.SetLocation: [Connection.Object, Connection.Vector, Connection.Rotation],
-    Tile.Raycast: [Connection.Vector, Connection.Vector],
-    Tile.Not: [Connection.Bool],
-    Tile.GetLocation: [Connection.Object],
-    Tile.Create: [Connection.Object],
-    Tile.Delete: [Connection.Object],
-    Tile.PlaySound: [Connection.Number, Connection.Number],
-    Tile.Or: [Connection.Bool],
-    Tile.AddNum: [Connection.Number, Connection.Number],
-    Tile.AddVec: [Connection.Vector, Connection.Vector],
-    Tile.SubNum: [Connection.Number, Connection.Number],
-    Tile.SubVec: [Connection.Vector, Connection.Vector],
-    Tile.Multiply: [Connection.Number, Connection.Number],
-    Tile.Modulo: [Connection.Number, Connection.Number],
-    Tile.EqualNum: [Connection.Number, Connection.Number],
-    Tile.EqualVec: [Connection.Vector, Connection.Vector],
-    Tile.EqualObject: [Connection.Object, Connection.Object],
-    Tile.LessThan: [Connection.Number, Connection.Number],
-    Tile.GreaterThan: [Connection.Number, Connection.Number],
-    Tile.Distance: [Connection.Vector, Connection.Vector],
-    Tile.ScreenToWorld: [Connection.Number, Connection.Number],
-    Tile.WorldToScreen: [Connection.Vector, Connection.Vector],
-    Tile.Random: [Connection.Number, Connection.Number],
-    Tile.Min: [Connection.Number, Connection.Number],
-    Tile.Max: [Connection.Number, Connection.Number],
-    Tile.Round: [Connection.Number],
-    Tile.Floor: [Connection.Number],
+    Tile.If: [WireType.Bool],
+    Tile.Loop: [WireType.Number, WireType.Number],
+    Tile.BreakVec: [WireType.Vector],
+    Tile.MakeVec: [WireType.Number, WireType.Number, WireType.Number],
+    Tile.And: [WireType.Bool, WireType.Bool],
+    Tile.Camera: [WireType.Vector, WireType.Rotation, WireType.Number],
+    Tile.SetLocation: [WireType.Object, WireType.Vector, WireType.Rotation],
+    Tile.Raycast: [WireType.Vector, WireType.Vector],
+    Tile.Not: [WireType.Bool],
+    Tile.GetLocation: [WireType.Object],
+    Tile.Create: [WireType.Object],
+    Tile.Delete: [WireType.Object],
+    Tile.PlaySound: [WireType.Number, WireType.Number],
+    Tile.Or: [WireType.Bool],
+    Tile.AddNum: [WireType.Number, WireType.Number],
+    Tile.AddVec: [WireType.Vector, WireType.Vector],
+    Tile.SubNum: [WireType.Number, WireType.Number],
+    Tile.SubVec: [WireType.Vector, WireType.Vector],
+    Tile.Multiply: [WireType.Number, WireType.Number],
+    Tile.Modulo: [WireType.Number, WireType.Number],
+    Tile.EqualNum: [WireType.Number, WireType.Number],
+    Tile.EqualVec: [WireType.Vector, WireType.Vector],
+    Tile.EqualObject: [WireType.Object, WireType.Object],
+    Tile.LessThan: [WireType.Number, WireType.Number],
+    Tile.GreaterThan: [WireType.Number, WireType.Number],
+    Tile.Distance: [WireType.Vector, WireType.Vector],
+    Tile.ScreenToWorld: [WireType.Number, WireType.Number],
+    Tile.WorldToScreen: [WireType.Vector, WireType.Vector],
+    Tile.Random: [WireType.Number, WireType.Number],
+    Tile.Min: [WireType.Number, WireType.Number],
+    Tile.Max: [WireType.Number, WireType.Number],
+    Tile.Round: [WireType.Number],
+    Tile.Floor: [WireType.Number],
 }
 
 OUTPUTS = {
-    Tile.If: [Connection.Execution, Connection.Execution],
-    Tile.Play: [Connection.Execution],
-    Tile.Loop: [Connection.Execution, Connection.Number],
-    Tile.Touch: [Connection.Execution, Connection.Number, Connection.Number],
-    Tile.BreakVec: [Connection.Number, Connection.Number, Connection.Number],
-    Tile.MakeVec: [Connection.Vector],
-    Tile.And: [Connection.Bool],
-    Tile.Raycast: [Connection.Bool, Connection.Vector, Connection.Object],
-    Tile.Not: [Connection.Bool],
-    Tile.GetLocation: [Connection.Vector, Connection.Rotation],
-    Tile.Create: [Connection.Object],
-    Tile.PlaySound: [Connection.Number],
-    Tile.Or: [Connection.Bool],
-    Tile.AddNum: [Connection.Number],
-    Tile.AddVec: [Connection.Vector],
-    Tile.SubNum: [Connection.Number],
-    Tile.SubVec: [Connection.Vector],
-    Tile.Multiply: [Connection.Number],
-    Tile.Modulo: [Connection.Number],
-    Tile.EqualNum: [Connection.Bool],
-    Tile.EqualVec: [Connection.Bool],
-    Tile.EqualObject: [Connection.Bool],
-    Tile.LessThan: [Connection.Bool],
-    Tile.GreaterThan: [Connection.Bool],
-    Tile.Distance: [Connection.Number],
-    Tile.ScreenToWorld: [Connection.Vector, Connection.Vector],
-    Tile.WorldToScreen: [Connection.Number, Connection.Number],
-    Tile.Random: [Connection.Number],
-    Tile.Min: [Connection.Number],
-    Tile.Max: [Connection.Number],
-    Tile.Round: [Connection.Number],
-    Tile.Floor: [Connection.Number],
+    Tile.If: [WireType.Execution, WireType.Execution],
+    Tile.Play: [WireType.Execution],
+    Tile.Loop: [WireType.Execution, WireType.Number],
+    Tile.Touch: [WireType.Execution, WireType.Number, WireType.Number],
+    Tile.BreakVec: [WireType.Number, WireType.Number, WireType.Number],
+    Tile.MakeVec: [WireType.Vector],
+    Tile.And: [WireType.Bool],
+    Tile.Raycast: [WireType.Bool, WireType.Vector, WireType.Object],
+    Tile.Not: [WireType.Bool],
+    Tile.GetLocation: [WireType.Vector, WireType.Rotation],
+    Tile.Create: [WireType.Object],
+    Tile.PlaySound: [WireType.Number],
+    Tile.Or: [WireType.Bool],
+    Tile.AddNum: [WireType.Number],
+    Tile.AddVec: [WireType.Vector],
+    Tile.SubNum: [WireType.Number],
+    Tile.SubVec: [WireType.Vector],
+    Tile.Multiply: [WireType.Number],
+    Tile.Modulo: [WireType.Number],
+    Tile.EqualNum: [WireType.Bool],
+    Tile.EqualVec: [WireType.Bool],
+    Tile.EqualObject: [WireType.Bool],
+    Tile.LessThan: [WireType.Bool],
+    Tile.GreaterThan: [WireType.Bool],
+    Tile.Distance: [WireType.Number],
+    Tile.ScreenToWorld: [WireType.Vector, WireType.Vector],
+    Tile.WorldToScreen: [WireType.Number, WireType.Number],
+    Tile.Random: [WireType.Number],
+    Tile.Min: [WireType.Number],
+    Tile.Max: [WireType.Number],
+    Tile.Round: [WireType.Number],
+    Tile.Floor: [WireType.Number],
 }
 
 HAS_EXEC = [
@@ -161,7 +161,7 @@ left_right: list[tuple[str, str]] = [(EMPTY, EMPTY)]
 up_down: list[tuple[str, str]] = [(EMPTY, EMPTY)]
 tiles_names: set[str] = {EMPTY}
 
-def get_connection(tile: Tile, line: int, right_side: bool) -> Connection | None:
+def get_connection(tile: Tile, line: int, right_side: bool) -> WireType | None:
     _map = OUTPUTS if right_side else INPUTS
     connections = _map.get(tile, [])
     return connections[line] if line < len(connections) else None
@@ -174,8 +174,8 @@ def names_generator(tile: Tile, line: int, right_side: bool) -> Generator[str, N
     for connection in connections:
         left = connection.value if not right_side and connection else NO_CONNECTION
         right = connection.value if right_side and connection else NO_CONNECTION
-        up = Connection.Execution.value if has_exec and line == 0 else NO_CONNECTION
-        down = Connection.Execution.value if has_exec and line + 1 == HEIGHTS.get(tile, DEFAULT_HEIGHT) else NO_CONNECTION
+        up = WireType.Execution.value if has_exec and line == 0 else NO_CONNECTION
+        down = WireType.Execution.value if has_exec and line + 1 == HEIGHTS.get(tile, DEFAULT_HEIGHT) else NO_CONNECTION
         name = f"{tile.name}_{line+1}{'R' if right_side else 'L'}_{up}{right}{down}{left}"
         yield name
 
