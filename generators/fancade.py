@@ -157,8 +157,8 @@ HAS_EXEC = [
 
 
 
-left_right: list[tuple[str, str]] = []
-up_down: list[tuple[str, str]] = []
+left_right: list[tuple[str, str]] = [(EMPTY, EMPTY)]
+up_down: list[tuple[str, str]] = [(EMPTY, EMPTY)]
 tiles_names: set[str] = {EMPTY}
 
 def get_connection(tile: Tile, line: int, right_side: bool) -> Connection | None:
@@ -227,8 +227,8 @@ for name in sorted(tiles_names):
     sprite_name = name_to_sprite(name)
     up = sorted(set(up for up, down in up_down if down == name))
     down = sorted(set(down for up, down in up_down if up == name))
-    left = sorted(set(left for left, right in up_down if right == name))
-    right = sorted(set(right for left, right in up_down if left == name))
+    left = sorted(set(left for left, right in left_right if right == name))
+    right = sorted(set(right for left, right in left_right if left == name))
     rule = {
         # TODO: Symbol
         'sprite': f'sprites/fancade/{sprite_name}.png',
@@ -238,6 +238,9 @@ for name in sorted(tiles_names):
         'right': right,
     }
     rules[name] = rule
+
+# Make it 50% empty
+rules[EMPTY]['weight'] = len(tiles_names)
 
 with open(RULES_PATH, 'w', encoding='utf-8') as f:
     json.dump(rules, f, indent=4)
